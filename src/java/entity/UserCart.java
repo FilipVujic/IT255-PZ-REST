@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "UserCart.findAll", query = "SELECT u FROM UserCart u")
     , @NamedQuery(name = "UserCart.findByUserCartID", query = "SELECT u FROM UserCart u WHERE u.userCartID = :userCartID")
+    , @NamedQuery(name = "UserCart.findByProductID", query = "SELECT u FROM UserCart u WHERE u.productID = :productID")
     , @NamedQuery(name = "UserCart.findByProductName", query = "SELECT u FROM UserCart u WHERE u.productName = :productName")
     , @NamedQuery(name = "UserCart.findByProductPrice", query = "SELECT u FROM UserCart u WHERE u.productPrice = :productPrice")
     , @NamedQuery(name = "UserCart.findByQuantity", query = "SELECT u FROM UserCart u WHERE u.quantity = :quantity")
@@ -41,6 +42,10 @@ public class UserCart implements Serializable {
     @Basic(optional = false)
     @Column(name = "userCartID")
     private Integer userCartID;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "productID")
+    private int productID;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -66,8 +71,9 @@ public class UserCart implements Serializable {
         this.userCartID = userCartID;
     }
 
-    public UserCart(Integer userCartID, String productName, int productPrice, int quantity, int userID) {
+    public UserCart(Integer userCartID, int productID, String productName, int productPrice, int quantity, int userID) {
         this.userCartID = userCartID;
+        this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
         this.quantity = quantity;
@@ -80,6 +86,14 @@ public class UserCart implements Serializable {
 
     public void setUserCartID(Integer userCartID) {
         this.userCartID = userCartID;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
