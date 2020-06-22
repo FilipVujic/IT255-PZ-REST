@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(service.CartItemFacadeREST.class);
         resources.add(service.CorsFilter.class);
         resources.add(service.ProductFacadeREST.class);
+        resources.add(service.UserCartFacadeREST.class);
         resources.add(service.UserFacadeREST.class);
     }
     
