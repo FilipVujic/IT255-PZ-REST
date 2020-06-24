@@ -29,8 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(service.CartFacadeREST.class);
-        resources.add(service.CartItemFacadeREST.class);
         resources.add(service.CorsFilter.class);
         resources.add(service.ProductFacadeREST.class);
         resources.add(service.UserCartFacadeREST.class);
