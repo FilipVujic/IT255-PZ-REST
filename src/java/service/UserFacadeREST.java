@@ -6,6 +6,7 @@
 package service;
 
 import entity.User;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -60,6 +61,23 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public User find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("queryObjList/{username}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<User> findAllWithUsername(@PathParam("username") String username) {
+        List<User> allUsers = super.findAll();
+        List<User> resultUser = new LinkedList<>();
+        
+        for (User recipe : allUsers) {
+            if (recipe.getUsername().equals(username)) {
+                resultUser.add(recipe);
+            }
+        }
+
+        
+        return resultUser;
     }
 
     @GET
