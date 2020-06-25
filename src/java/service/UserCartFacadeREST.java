@@ -6,6 +6,7 @@
 package service;
 
 import entity.UserCart;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -54,6 +55,17 @@ public class UserCartFacadeREST extends AbstractFacade<UserCart> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    
+//    @DELETE
+//    @Path("{byProductID/id}")
+//    public void removeByProductID(@PathParam("id") Integer id) {
+////        super.remove(super.find(id));
+//        List <UserCart> userCartList = super.findAll();
+//        for (int i = 0; i < userCartList.size(); i++) {
+//            if(userCartList.get(i).getProductID() == id)
+//                super.remove(userCartList.get(i));
+//        }
+//    }
 
     @GET
     @Path("{id}")
