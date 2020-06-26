@@ -6,6 +6,7 @@
 package service;
 
 import entity.UserCart;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -67,13 +68,25 @@ public class UserCartFacadeREST extends AbstractFacade<UserCart> {
 
     }
     
-    
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public UserCart find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("user/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List findFromUserID(@PathParam("id") Integer id) {
+        List <UserCart> userCartList = super.findAll();
+        List <UserCart> resultList = new ArrayList<>();
+        for(int i = 0; i < userCartList.size(); i++) {
+            if(userCartList.get(i).getUserID() == id)
+                resultList.add(userCartList.get(i));
+        }
+        return resultList;
     }
 
     @GET
