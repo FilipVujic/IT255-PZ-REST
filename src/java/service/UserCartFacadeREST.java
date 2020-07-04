@@ -68,6 +68,17 @@ public class UserCartFacadeREST extends AbstractFacade<UserCart> {
 
     }
     
+    @DELETE
+    @Path("productID/{id}")
+    public void removeByProductID(@PathParam("id") Integer id) {
+        List <UserCart> userCartList = super.findAll();
+        for(int i = 0; i < userCartList.size(); i++) {
+            if(userCartList.get(i).getProductID() == id)
+                super.remove(userCartList.get(i));
+        }
+
+    }
+    
 
     @GET
     @Path("{id}")
